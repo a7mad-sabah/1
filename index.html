@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Information - ERP System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --primary-light: #dbeafe;
+            --secondary: #0891b2;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-xl);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .card-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-header .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--bg-main);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* File Upload */
+        .file-upload-area {
+            border: 3px dashed var(--border);
+            border-radius: 1rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--bg-main);
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .file-upload-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .current-logo {
+            width: 200px;
+            height: 200px;
+            border: 3px solid var(--border);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            background: var(--bg-main);
+            font-size: 5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            border-color: var(--primary);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            background: var(--bg-main);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Activity Log */
+        .activity-list {
+            list-style: none;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .activity-item:hover {
+            background: var(--bg-main);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-content p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .badge-warning {
+            background: var(--warning);
+            color: white;
+        }
+
+        .badge-info {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row,
+            .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .quick-action-btn {
+            padding: 1rem;
+            background: var(--bg-main);
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .quick-action-btn:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .quick-action-btn .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-action-btn .label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="breadcrumb">
+                <span>Settings</span>
+                <span>›</span>
+                <span>Company Information</span>
+            </div>
+            <div class="header-content">
+                <div>
+                    <h1>🏢 Company Information</h1>
+                    <p>Manage your company details, branding, and business information</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Basic Information Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <span class="icon">📋</span>
+                            Basic Information
+                        </h2>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>💡 Information</h4>
+                        <p>This information will be displayed on invoices, reports, and other official documents.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Company Legal Name *</label>
+                        <input type="text" placeholder="Enter legal company name" value="Tech Solutions Inc.">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Trade Name (DBA)</label>
+                            <input type="text" placeholder="Doing business as" value="TechSol">
+                        </div>
+                        <div class="form-group">
+                            <label>Company Code *</label>
+                            <input type="text" placeholder="TECH001" value="TECH001">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Registration Number *</label>
+                            <input type="text" placeholder="Business registration number" value="REG-123456789">
+                        </div>
+                        <div class="form-group">
+                            <label>Tax ID Number (TIN) *</label>
+                            <input type="text" placeholder="Tax identification number" value="98-7654321">
+                        </div>
+                    </div>
+
+                    <div class="form-row-3">
+                        <div class="form-group">
+                            <label>Industry Type</label>
+                            <select>
+                                <option>Technology</option>
+                                <option>Manufacturing</option>
+                                <option>Retail</option>
+                                <option>Services</option>
+                                <option>Healthcare</option>
+                                <option>Education</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Company Size</label>
+                            <select>
+                                <option>1-10 employees</option>
+                                <option selected>11-50 employees</option>
+                                <option>51-200 employees</option>
+                                <option>201-500 employees</option>
+                                <option>500+ employees</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Establishment Date</label>
+                            <input type="date" value="2020-01-15">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Company Description</label>
+                        <textarea rows="4" placeholder="Brief description of your company">Leading provider of innovative technology solutions for businesses worldwide. We specialize in ERP systems, cloud services, and digital transformation.</textarea>
+                    </div>
+                </div>
+
+                <!-- Contact Information Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <span class="icon">📞</span>
+                            Contact Information
+                        </h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Primary Address *</label>
+                        <input type="text" placeholder="Street address" value="123 Business Street">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>City *</label>
+                            <input type="text" placeholder="City" value="New York">
+                        </div>
+                        <div class="form-group">
+                            <label>State/Province *</label>
+                            <input type="text" placeholder="State" value="NY">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>ZIP/Postal Code *</label>
+                            <input type="text" placeholder="ZIP code" value="10001">
+                        </div>
+                        <div class="form-group">
+                            <label>Country *</label>
+                            <select>
+                                <option selected>United States</option>
+                                <option>United Kingdom</option>
+                                <option>Canada</option>
+                                <option>Iraq</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Primary Phone *</label>
+                            <input type="tel" placeholder="+1 (555) 123-4567" value="+1 (555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label>Secondary Phone</label>
+                            <input type="tel" placeholder="+1 (555) 987-6543" value="+1 (555) 987-6543">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Primary Email *</label>
+                            <input type="email" placeholder="info@company.com" value="info@techsolutions.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Support Email</label>
+                            <input type="email" placeholder="support@company.com" value="support@techsolutions.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input type="url" placeholder="https://www.company.com" value="https://www.techsolutions.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Fax Number</label>
+                            <input type="tel" placeholder="+1 (555) 123-4568" value="+1 (555) 123-4568">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logo & Branding Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <span class="icon">🎨</span>
+                            Logo & Branding
+                        </h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Company Logo</label>
+                        <div class="current-logo">
+                            🏢
+                        </div>
+                        <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem;">Current logo preview</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload New Logo</label>
+                        <div class="file-upload-area">
+                            <div class="file-upload-icon">📤</div>
+                            <h3 style="margin-bottom: 0.5rem;">Drag & Drop or Click to Upload</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Recommended: PNG or SVG, 500x500px, max 5MB</p>
+                            <button class="btn btn-secondary" style="margin-top: 1rem;">Browse Files</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Company Tagline/Slogan</label>
+                        <input type="text" placeholder="Your company tagline" value="Innovation through Technology">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Primary Brand Color</label>
+                            <input type="color" value="#2563eb">
+                        </div>
+                        <div class="form-group">
+                            <label>Secondary Brand Color</label>
+                            <input type="color" value="#0891b2">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banking Information Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <span class="icon">🏦</span>
+                            Banking Information
+                        </h2>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>🔒 Security Notice</h4>
+                        <p>Banking information is encrypted and will only be used for official transactions.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bank Name *</label>
+                        <input type="text" placeholder="Bank name" value="First National Bank">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Account Name *</label>
+                            <input type="text" placeholder="Account holder name" value="Tech Solutions Inc.">
+                        </div>
+                        <div class="form-group">
+                            <label>Account Number *</label>
+                            <input type="text" placeholder="Account number" value="****1234">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Routing Number / SWIFT</label>
+                            <input type="text" placeholder="Routing or SWIFT code" value="FNBUS33">
+                        </div>
+                        <div class="form-group">
+                            <label>IBAN (if applicable)</label>
+                            <input type="text" placeholder="International Bank Account Number">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bank Branch/Location</label>
+                        <input type="text" placeholder="Branch name or location" value="Manhattan Main Branch">
+                    </div>
+                </div>
+
+                <!-- Social Media Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <span class="icon">🌐</span>
+                            Social Media & Online Presence
+                        </h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label>LinkedIn</label>
+                        <input type="url" placeholder="https://linkedin.com/company/yourcompany" value="https://linkedin.com/company/techsolutions">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Facebook</label>
+                        <input type="url" placeholder="https://facebook.com/yourcompany">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Twitter / X</label>
+                            <input type="url" placeholder="https://twitter.com/yourcompany">
+                        </div>
+                        <div class="form-group">
+                            <label>Instagram</label>
+                            <input type="url" placeholder="https://instagram.com/yourcompany">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>YouTube</label>
+                            <input type="url" placeholder="https://youtube.com/c/yourcompany">
+                        </div>
+                        <div class="form-group">
+                            <label>Other</label>
+                            <input type="url" placeholder="Other social media link">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <button class="btn btn-primary">💾 Save All Changes</button>
+                    <button class="btn btn-secondary">↺ Reset to Previous</button>
+                    <button class="btn btn-danger">🗑️ Clear Form</button>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Quick Stats Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <span class="icon">📊</span>
+                            Quick Stats
+                        </h2>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-label">Company Age</div>
+                            <div class="stat-value">5 years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Employees</div>
+                            <div class="stat-value">42</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Departments</div>
+                            <div class="stat-value">8</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Locations</div>
+                            <div class="stat-value">3</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <span class="icon">✓</span>
+                            Verification Status
+                        </h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Email Verified</span>
+                            <span class="badge badge-success">✓ Verified</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Phone Verified</span>
+                            <span class="badge badge-success">✓ Verified</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Tax ID Verified</span>
+                            <span class="badge badge-warning">⏳ Pending</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Bank Account Verified</span>
+                            <span class="badge badge-success">✓ Verified</span>
+                        </label>
+                    </div>
+
+                    <button class="btn btn-primary btn-block">🔄 Refresh Status</button>
+                </div>
+
+                <!-- Quick Actions Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <span class="icon">⚡</span>
+                            Quick Actions
+                        </h2>
+                    </div>
+
+                    <div class="quick-actions">
+                        <div class="quick-action-btn">
+                            <div class="icon">🖨️</div>
+                            <div class="label">Print Info</div>
+                        </div>
+                        <div class="quick-action-btn">
+                            <div class="icon">📤</div>
+                            <div class="label">Export Data</div>
+                        </div>
+                        <div class="quick-action-btn">
+                            <div class="icon">📋</div>
+                            <div class="label">Copy Details</div>
+                        </div>
+                        <div class="quick-action-btn">
+                            <div class="icon">📧</div>
+                            <div class="label">Email Info</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <span class="icon">🕐</span>
+                            Recent Activity
+                        </h2>
+                    </div>
+
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <div class="activity-icon">✏️</div>
+                            <div class="activity-content">
+                                <h4>Profile Updated</h4>
+                                <p>Company address changed</p>
+                                <div class="activity-time">2 hours ago</div>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">📤</div>
+                            <div class="activity-content">
+                                <h4>Logo Uploaded</h4>
+                                <p>New company logo added</p>
+                                <div class="activity-time">1 day ago</div>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">✓</div>
+                            <div class="activity-content">
+                                <h4>Email Verified</h4>
+                                <p>Primary email confirmed</p>
+                                <div class="activity-time">3 days ago</div>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">🏦</div>
+                            <div class="activity-content">
+                                <h4>Bank Details Added</h4>
+                                <p>Banking information saved</p>
+                                <div class="activity-time">1 week ago</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File upload interaction
+        document.querySelectorAll('.file-upload-area').forEach(upload => {
+            upload.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.onchange = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        alert(`File selected: ${file.name}`);
+                    }
+                };
+                input.click();
+            });
+
+            upload.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                upload.style.borderColor = 'var(--primary)';
+                upload.style.background = 'var(--primary-light)';
+            });
+            
+            upload.addEventListener('dragleave', () => {
+                upload.style.borderColor = '';
+                upload.style.background = '';
+            });
+            
+            upload.addEventListener('drop', (e) => {
+                e.preventDefault();
+                upload.style.borderColor = '';
+                upload.style.background = '';
+                const file = e.dataTransfer.files[0];
+                if (file) {
+                    alert(`File uploaded: ${file.name}`);
+                }
+            });
+        });
+
+        // Save button
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            const originalText = this.innerHTML;
+            this.innerHTML = '✓ Saved Successfully';
+            this.style.background = 'var(--success)';
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.style.background = '';
+            }, 2000);
+        });
+
+        // Quick action buttons
+        document.querySelectorAll('.quick-action-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const label = this.querySelector('.label').textContent;
+                alert(`Action: ${label}`);
+            });
+        });
+    </script>
+</body>
+</html>
